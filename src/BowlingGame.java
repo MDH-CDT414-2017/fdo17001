@@ -11,6 +11,8 @@ public class BowlingGame {
 
 	private void elaborateScore(String throwsResults) {
 		// TODO Auto-generated method stub
+		
+	try {
 		String [] arrayAttempts= throwsResults.split("]");
 		for (int i=0;i<10;i++)
 		{
@@ -72,6 +74,12 @@ public class BowlingGame {
 			
 			
 		}
+	} catch (Exception e)
+	{
+		this.score=-1;
+	}
+		
+	
 		
 		
 	}
