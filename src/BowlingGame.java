@@ -48,10 +48,21 @@ public class BowlingGame {
 				if(sumAttempt==10)
 				{
 					//this attempt is a spare
-					int[] nextAttempt=this.parseAttempt(arrayAttempts[i+1]);
-					int firstNextAttempt= nextAttempt[0];
 					
-					this.score+=10+firstNextAttempt;
+					if(i==9)
+					{
+						//last attempt
+						int lastAttempt=this.parseLastAttempt(arrayAttempts[i+1]);
+						this.score+=10+lastAttempt;
+					}
+					else
+					{
+						int[] nextAttempt=this.parseAttempt(arrayAttempts[i+1]);
+						int firstNextAttempt= nextAttempt[0];
+						this.score+=10+firstNextAttempt;
+					}
+					
+					
 				}
 				else
 					this.score+=sumAttempt;
@@ -65,6 +76,12 @@ public class BowlingGame {
 		
 	}
 	
+	private int parseLastAttempt(String s) {
+		
+		return Integer.parseInt(s.substring(1));
+		
+	}
+
 	private int[] parseAttempt(String s)
 	{
 		int[] attempt= new int[2];
