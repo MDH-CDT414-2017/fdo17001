@@ -11,27 +11,36 @@ public class BowlingGame {
 
 	private void elaborateScore(String throwsResults) {
 		// TODO Auto-generated method stub
-		String [] arrayThrow= throwsResults.split("]");
+		String [] arrayAttempts= throwsResults.split("]");
 		for (int i=0;i<10;i++)
 		{
-			String s=arrayThrow[i];
+			String s=arrayAttempts[i];
 			
 			//Call the parseThrow method in order to convert the attempt string
 			//in a pair of integer that represents how many pins were knocks down 
 			//in this throw
-			int[] attempt = this.parseThrow(s);
+			int[] attempt = this.parseAttempt(s);
 			
 			int firstAttempt=attempt[0];
 			int secondAttempt=attempt[1];
 		
 			if(firstAttempt==10)
 			{
-				//we had a strike
-				int[] nextAttempt= this.parseThrow(arrayThrow[i+1]);
+				//this attempt is a strike
+				int[] nextAttempt= this.parseAttempt(arrayAttempts[i+1]);
 				int firstNextAttempt=nextAttempt[0];
 				int secondNextAttempt=nextAttempt[1];
 				
-				this.score+=10+firstNextAttempt+secondNextAttempt;
+				if (firstNextAttempt==10)
+				{
+					//also the next attempt is a strike
+					int[] nextNextAttempt = this.parseAttempt(arrayAttempts[i+2]);
+					int firstNextNextAttempt= nextNextAttempt[0];
+					
+					this.score+= 10+10+firstNextNextAttempt;
+				}
+				else
+					this.score+=10+firstNextAttempt+secondNextAttempt;
 			}
 			else
 			{
@@ -46,7 +55,7 @@ public class BowlingGame {
 		
 	}
 	
-	private int[] parseThrow(String s)
+	private int[] parseAttempt(String s)
 	{
 		int[] attempt= new int[2];
 		
