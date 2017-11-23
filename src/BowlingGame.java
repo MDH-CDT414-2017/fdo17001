@@ -44,7 +44,17 @@ public class BowlingGame {
 			}
 			else
 			{
-				this.score+=firstAttempt+secondAttempt;
+				int sumAttempt=firstAttempt+secondAttempt;
+				if(sumAttempt==10)
+				{
+					//this attempt is a spare
+					int[] nextAttempt=this.parseAttempt(arrayAttempts[i+1]);
+					int firstNextAttempt= nextAttempt[0];
+					
+					this.score+=10+firstNextAttempt;
+				}
+				else
+					this.score+=sumAttempt;
 			}
 			
 			
