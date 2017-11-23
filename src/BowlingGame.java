@@ -15,10 +15,15 @@ public class BowlingGame {
 		for (String s : arrayThrow)
 		{
 			
+			
 			//get how many pins were knock down in the first attempt of this throw
-			int firstAttempt=Integer.parseInt(s.substring(1, 2));
+			String temp=s.split(",")[0];
+			temp= temp.substring(1);
+			int firstAttempt=Integer.parseInt(temp);
+			
 			//get how many pins were knock down in the second attempt of this throw
-			int secondAttempt=Integer.parseInt(s.substring(3, 4));
+			int secondAttempt=Integer.parseInt(s.split(",")[1]);
+			
 			
 			
 			this.score+=firstAttempt+secondAttempt;
