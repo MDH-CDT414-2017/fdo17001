@@ -12,7 +12,7 @@ public class BowlingGame {
 	private void elaborateScore(String throwsResults) {
 		// TODO Auto-generated method stub
 		
-	try {
+	
 		String [] arrayAttempts= throwsResults.split("]");
 		for (int i=0;i<10;i++)
 		{
@@ -36,10 +36,23 @@ public class BowlingGame {
 				if (firstNextAttempt==10)
 				{
 					//also the next attempt is a strike
-					int[] nextNextAttempt = this.parseAttempt(arrayAttempts[i+2]);
-					int firstNextNextAttempt= nextNextAttempt[0];
+					if(i==9)
+					{
+						//is the last attempt
+						int[] nextNextAttempt = this.parseAttempt(arrayAttempts[i+1]);
+						int firstNextNextAttempt= nextNextAttempt[0];
+						int secondNextNextAttempt=nextNextAttempt[1];
+						
+						this.score+= 10+firstNextNextAttempt+secondNextNextAttempt;
+					}
+					else
+					{
+						int[] nextNextAttempt = this.parseAttempt(arrayAttempts[i+2]);
+						int firstNextNextAttempt= nextNextAttempt[0];
+						
+						this.score+= 10+10+firstNextNextAttempt;
+					}
 					
-					this.score+= 10+10+firstNextNextAttempt;
 				}
 				else
 					this.score+=10+firstNextAttempt+secondNextAttempt;
@@ -74,11 +87,7 @@ public class BowlingGame {
 			
 			
 		}
-	} catch (Exception e)
-	{
-		this.score=-1;
-	}
-		
+	
 	
 		
 		
