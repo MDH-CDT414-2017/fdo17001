@@ -13,10 +13,26 @@ public class BowlingGame {
 		// TODO Auto-generated method stub
 		
 	try {
+		throwsResults=throwsResults.replaceAll("\\s+","");
 		String [] arrayAttempts= throwsResults.split("]");
+		if(arrayAttempts.length>10)
+		{
+			String s=arrayAttempts[9];
+			int[] attempt = this.parseAttempt(s);
+			
+			int firstAttempt=attempt[0];
+			int secondAttempt=attempt[1];
+			if(firstAttempt!=10 && firstAttempt+secondAttempt!=10)
+			{
+				throw new Exception();
+			}
+			
+		}
+		
 		for (int i=0;i<10;i++)
 		{
 			String s=arrayAttempts[i];
+			
 			
 			//Call the parseThrow method in order to convert the attempt string
 			//in a pair of integer that represents how many pins were knocks down 
@@ -25,11 +41,17 @@ public class BowlingGame {
 			
 			int firstAttempt=attempt[0];
 			int secondAttempt=attempt[1];
-		
+			
+			if (firstAttempt<0 | secondAttempt<0 | firstAttempt>10 | secondAttempt>10 | firstAttempt+secondAttempt>10)  
+			{
+				throw new Exception();
+			}
+			
+			
 			if(firstAttempt==10)
 			{
-				if(secondAttempt==0)
-				{
+				/*if(secondAttempt==0)
+				{*/
 
 					//this attempt is a strike
 					int[] nextAttempt= this.parseAttempt(arrayAttempts[i+1]);
@@ -60,14 +82,14 @@ public class BowlingGame {
 					else
 						this.score+=10+firstNextAttempt+secondNextAttempt;
 				
-				}
+				/*}
 				else
 				{
 					//if the second attempt after a strike ain't 0 then 
 					//there's an error in the string
 					this.score=-1;
 					break;
-				}
+				}*/
 			}
 			else
 			{
@@ -101,6 +123,7 @@ public class BowlingGame {
 		}
 	}catch(Exception e)
 	{
+
 		this.score=-1;
 	}
 	

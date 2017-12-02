@@ -23,13 +23,13 @@ public class BowlingGameTest extends TestCase {
 	}
 	
 	public void testOneSpare() {
-		String throwsResults="[1,9][3,6][7,2][3,6][4,4][5,3][3,3][4,5][8,1][2,6] ";
+		String throwsResults="[1,9][3,6][7,2][3,6][4,4][5,3][3,3][4,5][8,1][2,6]";
 		BowlingGame bw = new BowlingGame(throwsResults);
 		assertEquals(88,bw.getScore());
 	}
 	
 	public void testMultipleSpares() {
-		String throwsResults="[8,2][5,5][7,2][3,6][4,4][5,3][3,3][4,5][8,1][2,6] ";
+		String throwsResults="[8,2][5,5][7,2][3,6][4,4][5,3][3,3][4,5][8,1][2,6]";
 		BowlingGame bw = new BowlingGame(throwsResults);
 		assertEquals(98,bw.getScore());
 	}
@@ -75,6 +75,14 @@ public class BowlingGameTest extends TestCase {
 		BowlingGame bw = new BowlingGame(throwsResults);
 		assertEquals(-1,bw.getScore());
 	}
+	
+	public void testErrorExists3() {
+		String throwsResults="[3,2][10,4][10,0][10,0][10,0][10,0][10,0][10,0][10,0][3,2]";
+		BowlingGame bw = new BowlingGame(throwsResults);
+		assertEquals(-1,bw.getScore());
+	}
+	
+	
 	
 	
 	
