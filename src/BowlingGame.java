@@ -12,7 +12,7 @@ public class BowlingGame {
 	private void elaborateScore(String throwsResults) {
 		// TODO Auto-generated method stub
 		
-	
+	try {
 		String [] arrayAttempts= throwsResults.split("]");
 		for (int i=0;i<10;i++)
 		{
@@ -25,37 +25,50 @@ public class BowlingGame {
 			
 			int firstAttempt=attempt[0];
 			int secondAttempt=attempt[1];
+			System.out.println(secondAttempt);
 		
 			if(firstAttempt==10)
 			{
-				//this attempt is a strike
-				int[] nextAttempt= this.parseAttempt(arrayAttempts[i+1]);
-				int firstNextAttempt=nextAttempt[0];
-				int secondNextAttempt=nextAttempt[1];
-				
-				if (firstNextAttempt==10)
+				if(secondAttempt==0)
 				{
-					//also the next attempt is a strike
-					if(i==9)
+
+					//this attempt is a strike
+					int[] nextAttempt= this.parseAttempt(arrayAttempts[i+1]);
+					int firstNextAttempt=nextAttempt[0];
+					int secondNextAttempt=nextAttempt[1];
+					
+					if (firstNextAttempt==10)
 					{
-						//is the last attempt
-						int[] nextNextAttempt = this.parseAttempt(arrayAttempts[i+1]);
-						int firstNextNextAttempt= nextNextAttempt[0];
-						int secondNextNextAttempt=nextNextAttempt[1];
+						//also the next attempt is a strike
+						if(i==9)
+						{
+							//is the last attempt
+							int[] nextNextAttempt = this.parseAttempt(arrayAttempts[i+1]);
+							int firstNextNextAttempt= nextNextAttempt[0];
+							int secondNextNextAttempt=nextNextAttempt[1];
+							
+							this.score+= 10+firstNextNextAttempt+secondNextNextAttempt;
+						}
+						else
+						{
+							int[] nextNextAttempt = this.parseAttempt(arrayAttempts[i+2]);
+							int firstNextNextAttempt= nextNextAttempt[0];
+							
+							this.score+= 10+10+firstNextNextAttempt;
+						}
 						
-						this.score+= 10+firstNextNextAttempt+secondNextNextAttempt;
 					}
 					else
-					{
-						int[] nextNextAttempt = this.parseAttempt(arrayAttempts[i+2]);
-						int firstNextNextAttempt= nextNextAttempt[0];
-						
-						this.score+= 10+10+firstNextNextAttempt;
-					}
-					
+						this.score+=10+firstNextAttempt+secondNextAttempt;
+				
 				}
 				else
-					this.score+=10+firstNextAttempt+secondNextAttempt;
+				{
+					//if the second attempt after a strike ain't 0 then 
+					//there's an error in the string
+					this.score=-1;
+					break;
+				}
 			}
 			else
 			{
@@ -87,6 +100,10 @@ public class BowlingGame {
 			
 			
 		}
+	}catch(Exception e)
+	{
+		this.score=-1;
+	}
 	
 	
 		
