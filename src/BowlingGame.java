@@ -25,7 +25,6 @@ public class BowlingGame {
 			
 			int firstAttempt=attempt[0];
 			int secondAttempt=attempt[1];
-			System.out.println(secondAttempt);
 		
 			if(firstAttempt==10)
 			{
@@ -133,8 +132,7 @@ public class BowlingGame {
 	}
 
 	public int getScore() {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub	
 		return this.score;
 	}
 	

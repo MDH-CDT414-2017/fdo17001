@@ -64,8 +64,14 @@ public class BowlingGameTest extends TestCase {
 		assertEquals(300,bw.getScore());
 	}
 	
-	public void testErrorExists() {
+	public void testErrorExists1() {
 		String throwsResults="[10,2][10,0][10,0][10,0][10,0][10,0][10,0][10,0][10,0][10,0][10,10]";
+		BowlingGame bw = new BowlingGame(throwsResults);
+		assertEquals(-1,bw.getScore());
+	}
+	
+	public void testErrorExists2() {
+		String throwsResults="[10;2][10,0][10,0][10,0][10,0][10,0][10,0][10,0][10,0][10,0][10,10]";
 		BowlingGame bw = new BowlingGame(throwsResults);
 		assertEquals(-1,bw.getScore());
 	}
